@@ -1,47 +1,53 @@
 import React, { useState } from "react";
-import { Button, Container, FormControl, InputGroup, Row } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  FormControl,
+  InputGroup,
+  Row,
+} from "react-bootstrap";
 
-
-const Search = (props) => {
+const Search = ({ search }) => {
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearchInputChanges = (e) => {
     setSearchValue(e.target.value);
-  }
+  };
 
   const resetInputField = () => {
-    setSearchValue("")
-  }
+    setSearchValue("");
+  };
 
   const callSearchFunction = (e) => {
     e.preventDefault();
-    props.search(searchValue);
+    search(searchValue);
     resetInputField();
-  }
+  };
 
   return (
     <Container>
       <Row className="d-flex justify-content-center">
         <InputGroup className="mb-3">
-          <FormControl aria-describedby="basic-addon1" 
+          <FormControl
+            aria-describedby="basic-addon1"
             value={searchValue}
             onChange={handleSearchInputChanges}
-            type="text" />
+            type="text"
+          />
           <InputGroup.Prepend>
             <Button
               variant="outline-primary"
               onClick={callSearchFunction}
               type="submit"
-              value="SEARCH">
+              value="SEARCH"
+            >
               Search
             </Button>
           </InputGroup.Prepend>
-
         </InputGroup>
       </Row>
     </Container>
-
   );
-}
+};
 
 export default Search;
